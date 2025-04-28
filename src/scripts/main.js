@@ -1,6 +1,6 @@
 'use strict';
 
-const capitalize = (str, lower = false) =>
+const capitalise = (str, lower = false) =>
   (lower ? str.toLowerCase() : str).replace(/(?:^|\s|["'([{])+\S/g, (match) =>
     match.toUpperCase()
   );
@@ -8,18 +8,13 @@ const capitalize = (str, lower = false) =>
 const inputWrapper = document.querySelectorAll('.field');
 const inputs = document.querySelectorAll('.field input');
 
-const inputNames = [];
-
 for (let i = 0; i < inputs.length; i++) {
-  inputNames.push(inputs[i].getAttribute('name'));
+  const inputName = inputs[i].getAttribute('name');
+  const capitalisedName = capitalise(inputName, true);
+  inputs[i].setAttribute('placeholder', capitalisedName);
   const label = document.createElement('label');
   label.classList.add('field-label');
   label.setAttribute('for', inputs[i].id);
-  const labelText = capitalize(inputNames[i], true);
-  label.innerText = labelText;
+  label.innerText = capitalisedName;
   inputWrapper[i].appendChild(label);
-}
-
-for (let i = 0; i < inputs.length; i++) {
-  inputs[i].setAttribute('placeholder', capitalize(inputNames[i], true));
 }
