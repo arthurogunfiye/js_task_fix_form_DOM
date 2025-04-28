@@ -5,16 +5,28 @@ const capitalise = (str, lower = false) =>
     match.toUpperCase()
   );
 
-const inputWrapper = document.querySelectorAll('.field');
 const inputs = document.querySelectorAll('.field input');
 
-for (let i = 0; i < inputs.length; i++) {
-  const inputName = inputs[i].getAttribute('name');
+// My solution
+// for (let i = 0; i < inputs.length; i++) {
+//   const inputName = inputs[i].getAttribute('name');
+//   const capitalisedName = capitalise(inputName, true);
+//   inputs[i].setAttribute('placeholder', capitalisedName);
+//   const label = document.createElement('label');
+//   label.classList.add('field-label');
+//   label.setAttribute('for', inputs[i].id); // or label.htmlFor = inputs[i].id
+//   label.innerText = capitalisedName;
+//   inputs[i].before(label);
+// }
+
+// Alternative solution
+for (const input of inputs) {
+  const inputName = input.getAttribute('name');
   const capitalisedName = capitalise(inputName, true);
-  inputs[i].setAttribute('placeholder', capitalisedName);
+  input.setAttribute('placeholder', capitalisedName);
   const label = document.createElement('label');
   label.classList.add('field-label');
-  label.setAttribute('for', inputs[i].id);
+  label.setAttribute('for', input.id); // or label.htmlFor = input.id
   label.innerText = capitalisedName;
-  inputWrapper[i].appendChild(label);
+  input.before(label);
 }
