@@ -14,7 +14,7 @@ for (let i = 0; i < inputs.length; i++) {
   inputNames.push(inputs[i].getAttribute('name'));
   const label = document.createElement('label');
   label.classList.add('field-label');
-  label.setAttribute('for', inputNames[i]);
+  label.setAttribute('for', inputs[i].id);
   const labelText = capitalize(inputNames[i], true);
   label.innerText = labelText;
   inputWrapper[i].appendChild(label);
